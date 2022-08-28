@@ -1,0 +1,113 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "Backend de e-commerce con NodeJS, Express, MongoDB",
+      "version": "1.0.0",
+      "title": "e-commerce"
+    },
+    "host": "localhost:3005",
+    "basePath": "/api/v1",
+    "tags": [
+      {
+        "name": "clientes",
+        "description": "Operaciones sobre los clientes"
+      }
+    ],
+    "schemes": [
+      "http"
+    ],
+    "paths": {
+      "/clientes": {
+        "get": {
+          "tags": [
+            "clientes"
+          ],
+          "summary": "Lista de Clientes",
+          "operationId": "obtenerClientes",
+          "responses": {
+            "default": {
+              "description": "Lista de clientes"
+            }
+          }
+        },
+        "post": {
+          "tags": [
+            "Cliente"
+          ],
+          "summary": "Crea un cliente",
+          "description": "Crea un cliente en nuestra app",
+          "operationId": "crearCliente",
+          "produces": [
+            "application/json"
+          ],
+          "parameters": [
+            {
+              "in": "body",
+              "name": "body",
+              "description": "Usuario creado",
+              "required": true,
+              "schema": {
+                "$ref": "#/definitions/Cliente"
+              }
+            }
+          ],
+          "responses": {
+            "default": {
+              "description": "successful operation"
+            }
+          }
+        }
+      }
+    },
+    "securityDefinitions": {
+      "petstore_auth": {
+        "type": "oauth2",
+        "authorizationUrl": "http://petstore.swagger.io/oauth/dialog",
+        "flow": "implicit",
+        "scopes": {
+          "write:pets": "modify pets in your account",
+          "read:pets": "read your pets"
+        }
+      },
+      "api_key": {
+        "type": "apiKey",
+        "name": "api_key",
+        "in": "header"
+      }
+    },
+    "definitions": {
+      "Cliente": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "username": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          }
+        }
+      },
+      "ApiResponse": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "externalDocs": {
+      "description": "Find out more about Swagger",
+      "url": "http://swagger.io"
+    }
+  }
