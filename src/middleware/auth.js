@@ -26,7 +26,18 @@ const helperAuth = require('../Helpers/Auth.helpers.js')
     }
   }
 
+const checkAdmin = (req, res, next) => {
+  checkToken(req, res, next), () => {
+    if (req.user.rol === 'admin') {
+        next()
+      }else {
+    response.error(req, res, { info: 'No tienes permisos' }, 403, 'El usuario no tiene los permisos')
+    }
+  }
+  }
+
 module.exports = {
   checkToken,
-  checkUser
+  checkUser,
+  checkAdmin,
   }

@@ -33,5 +33,14 @@ module.exports = {
     } catch (err) {
       return err
     }
+  },
+
+  updateHotelHab: async (idHotel, data) => {
+    try {
+      const hotelUpdate = await hotelModel.findByIdAndUpdate({ _id: idHotel }, { $push: { habitaciones: data } })
+      return hotelUpdate
+    } catch (err) {
+      return err
+    }
   }
 }
