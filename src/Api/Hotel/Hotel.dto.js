@@ -42,5 +42,18 @@ module.exports = {
     } catch (err) {
       return err
     }
+  },
+
+  getNumberHotels: async (data) => {
+    try {
+      return await hotelModel.countDocuments({ciudad: data})
+    } catch (err) {
+      return err
+    }
+
+  },
+
+  getNumberType: async () => {
+
   }
 }

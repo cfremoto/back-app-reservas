@@ -1,5 +1,6 @@
 const hotelDto = require('./Hotel.dto.js')
 const response = require('../../Config/response.js')
+const { getNumberHotels } = require('./Hotel.dto.js')
 
 
 module.exports = {
@@ -50,5 +51,24 @@ module.exports = {
     if (updateHotel?.message) return next(updateHotel)
 
     response.sucess(req, res, {info: 'Operacion exitosa', updateHotel}, 200)
-  }
+  },
+
+  getNumberHotels: async (req, res, next) => {
+
+    const ciudades = req.query.ciudades.split(',')
+    let numberCiudades
+
+    if (typeof (ciudades) === []) {
+      numberCiudades = await Promise.all(ciudades.map( async (ciudad) => {
+      return await getNumberHotels(ciudad)
+    }))
+    } else {
+      numberCiudades = await getNumberHotels(ciudades)
+    }
+
+    response.sucess(req, res, {info: 'Operacion exitosa', numberCiudades}, 200)
+  },
+
+  getNumberType: async () => {}
+
 }
